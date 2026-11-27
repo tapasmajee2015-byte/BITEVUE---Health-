@@ -1,0 +1,192 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User display name, daily nutrition goals, and starter-data seed flag.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Authenticated Firebase Auth UID matching the document path."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User display name shown in greeting and profile (1-60 chars)."
+        },
+        "calorieGoal": {
+          "type": "integer",
+          "description": "Daily calorie target in kcal (800-6000)."
+        },
+        "proteinGoal": {
+          "type": "integer",
+          "description": "Daily protein target in grams (10-400)."
+        },
+        "carbsGoal": {
+          "type": "integer",
+          "description": "Daily carbohydrate target in grams (10-800)."
+        },
+        "fatGoal": {
+          "type": "integer",
+          "description": "Daily fat target in grams (10-300)."
+        },
+        "waterGoal": {
+          "type": "integer",
+          "description": "Daily hydration target in glasses (1-16)."
+        },
+        "starterSeeded": {
+          "type": "boolean",
+          "description": "Whether initial starter meals and hydration were seeded on first launch."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp written with FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp written with FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "displayName",
+        "calorieGoal",
+        "proteinGoal",
+        "carbsGoal",
+        "fatGoal",
+        "waterGoal",
+        "starterSeeded",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "MealEntry": {
+      "title": "MealEntry",
+      "description": "A single logged meal with macros, calories, date key, and entry source.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Owner Firebase Auth UID."
+        },
+        "dateKey": {
+          "type": "string",
+          "description": "Local calendar date key in yyyy-MM-dd format."
+        },
+        "category": {
+          "type": "string",
+          "enum": ["BREAKFAST", "LUNCH", "DINNER", "SNACK"],
+          "description": "Meal category."
+        },
+        "name": {
+          "type": "string",
+          "description": "Short dish or meal title (1-80 chars)."
+        },
+        "detail": {
+          "type": "string",
+          "description": "Ingredients or brief description (0-200 chars)."
+        },
+        "calories": {
+          "type": "integer",
+          "description": "Estimated energy in kcal (0-5000)."
+        },
+        "proteinGrams": {
+          "type": "integer",
+          "description": "Protein in grams (0-400)."
+        },
+        "carbsGrams": {
+          "type": "integer",
+          "description": "Carbohydrates in grams (0-600)."
+        },
+        "fatGrams": {
+          "type": "integer",
+          "description": "Fat in grams (0-300)."
+        },
+        "source": {
+          "type": "string",
+          "enum": ["MANUAL", "PRESET", "AI_SCAN"],
+          "description": "How the meal was logged."
+        },
+        "insight": {
+          "type": "string",
+          "description": "Optional brief nutrition insight from AI food scan (0-240 chars)."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp written with FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp written with FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "dateKey",
+        "category",
+        "name",
+        "detail",
+        "calories",
+        "proteinGrams",
+        "carbsGrams",
+        "fatGrams",
+        "source",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "DailyHydration": {
+      "title": "DailyHydration",
+      "description": "Daily glass count for a specific yyyy-MM-dd calendar day.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Owner Firebase Auth UID."
+        },
+        "dateKey": {
+          "type": "string",
+          "description": "Calendar date key matching document ID (yyyy-MM-dd)."
+        },
+        "glasses": {
+          "type": "integer",
+          "description": "Number of glasses of water logged (0-16)."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp written with FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp written with FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "dateKey",
+        "glasses",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Authenticated user wellness profile and daily nutrition goals."
+    },
+    "/users/{userId}/meals/{mealId}": {
+      "schema": { "$ref": "#/entities/MealEntry" },
+      "description": "Per-user meal diary entries scoped by dateKey."
+    },
+    "/users/{userId}/hydration/{dateKey}": {
+      "schema": { "$ref": "#/entities/DailyHydration" },
+      "description": "Per-user daily hydration log keyed by yyyy-MM-dd."
+    }
+  }
+}

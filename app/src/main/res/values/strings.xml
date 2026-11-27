@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Bitevue</string>
+    <string name="brand_name">bitevue</string>
+    <string name="brand_tagline">see what you eat.</string>
+    <string name="eyebrow_daily_wellness">YOUR DAILY WELLNESS</string>
+    <string name="eyebrow_food_journal">YOUR FOOD JOURNAL</string>
+    <string name="eyebrow_account">YOUR ACCOUNT</string>
+    <string name="hero_heading_line_1">Eat better.</string>
+    <string name="hero_heading_line_2">Feel better.</string>
+    <string name="card_daily_calories">DAILY CALORIES</string>
+    <string name="section_your_nutrition">Your nutrition</string>
+    <string name="section_quick_actions">Quick actions</string>
+    <string name="section_todays_hydration">Today\'s hydration</string>
+    <string name="scan_food_title">Scan your food</string>
+    <string name="scan_food_subtitle">Discover what\'s on your plate with AI</string>
+    <string name="water_intake_title">Water intake</string>
+    <string name="add_water_button">+ Add a glass of water</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_diary">Diary</string>
+    <string name="nav_profile">Profile</string>
+    <string name="diary_title">Meal diary</string>
+    <string name="diary_subtitle">A little progress every day.</string>
+    <string name="profile_title">Your profile</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="sign_out">Sign out</string>
+    <string name="log_meal">Log meal</string>
+</resources>

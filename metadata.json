@@ -1,0 +1,6 @@
+{
+  "name": "Bitevue",
+  "description": "Daily wellness and nutrition companion to track calories, macros, hydration, meal diary, and scan food with AI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
